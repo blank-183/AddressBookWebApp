@@ -1,0 +1,105 @@
+﻿@model IEnumerable<AddressBookWebApp.Models.AddressBook>
+
+@{
+    ViewData["Title"] = "Address Book List";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+    var successMessage = TempData["successMessage"]?.ToString();
+}
+
+<h3 class="my-2">
+    @ViewData["Title"]
+</h3>
+<hr />
+
+@if (!string.IsNullOrWhiteSpace(successMessage))
+{
+    <div class="alert alert-success">
+        <b>Success:</b> @successMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <b>Error:</b> @errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form>
+    <div class="input-group">
+        <input id="searchBar" type="text" onkeyup="searchName()" class="form-control" placeholder="Search address book">
+    </div>
+    <table id="addressTable" class="table table-responsive table-hover table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th>Address Book Id</th>
+                <th>Full Name</th>
+                <th>Address Line</th>
+                <th>City</th>
+                <th>Province</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var address in Model)
+                {
+                    <tr>
+                        <td>@address.AddressBookId</td>
+                        <td>@address.FullName</td>
+                        <td>@address.AddressLine</td>
+                        <td>@address.City</td>
+                        <td>@address.Province</td>
+                        <td>@address.PhoneNumber</td>
+                        <td>
+                            <div class="btn btn-group">
+                                <a asp-controller="AddressBook" asp-action="Edit" asp-route-id="@address.AddressBookId" class="btn btn-success">Edit</a>
+                                <a asp-controller="AddressBook" asp-action="Delete" asp-route-id="@address.AddressBookId" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div>
+                            Data is currently unavailable.
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button asp-controller="AddressBook" asp-action="Add" class="btn btn-primary">Add New Data To Address Book</button>
+</form>
+
+<script>
+    function searchName() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchBar");
+        filter = input.value;
+        table = document.getElementById("addressTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

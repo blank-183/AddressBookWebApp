@@ -1,0 +1,71 @@
+﻿@model AddressBookWebApp.Models.AddressBook
+@{
+    ViewData["Title"] = "Update Person Data";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3>@ViewData["Title"]?.ToString()</h3>
+<hr />
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <b>Error:</b>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form method="post" action="Edit" class="form-control mt-3" autocomplete="off">
+    <div class="mb-3">
+        <label class="form-label" asp-for="AddressBookId"></label>
+        <input type="text" class="form-control" asp-for="AddressBookId" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="FirstName"></label>
+        <input type="text" class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="MiddleName"></label>
+        <input type="text" class="form-control" asp-for="MiddleName" />
+        <span asp-validation-for="MiddleName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="LastName"></label>
+        <input type="text" class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="AddressLine"></label>
+        <input type="text" class="form-control" asp-for="AddressLine" />
+        <span asp-validation-for="AddressLine" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="City"></label>
+        <input type="text" class="form-control" asp-for="City" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Province"></label>
+        <input type="text" class="form-control" asp-for="Province" />
+        <span asp-validation-for="Province" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="PhoneNumber"></label>
+        <input type="text" class="form-control" asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <div class="btn-group col-lg-12">
+            <button type="submit" class="btn btn-success">Update</button>
+            <a asp-controller="AddressBook" asp-action="Index" class="btn btn-secondary" style="width: 150px;">Back to list</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
