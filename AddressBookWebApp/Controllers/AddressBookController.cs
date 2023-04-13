@@ -51,7 +51,7 @@ namespace AddressBookWebApp.Controllers
                     return View();
                 }
 
-                TempData["successMessage"] = "Address book details successfully inserted!";
+                TempData["successMessage"] = "Person data has been successfully added to the address book!";
 
                 return RedirectToAction("Index");
             }

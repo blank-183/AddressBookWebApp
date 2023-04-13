@@ -1,66 +1,60 @@
 ﻿@model AddressBookWebApp.Models.AddressBook
 @{
     ViewData["Title"] = "Delete Person Data";
-    var errorMessage = TempData["errorMessage"]?.ToString();
-}
-<h3>@ViewData["Title"]?.ToString()</h3>
-<hr />
-
-@if (!string.IsNullOrWhiteSpace(errorMessage))
-{
-    <div class="alert alert-danger">
-        <b>Error:</b>
-        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 }
 
-<form method="post" action="Delete" class="form-control mt-3" autocomplete="off">
-    <div class="mb-3">
-        <label class="form-label" asp-for="AddressBookId"></label>
-        <input type="text" class="form-control" asp-for="AddressBookId" readonly />
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="FirstName"></label>
-        <input type="text" class="form-control" asp-for="FirstName" readonly />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="MiddleName"></label>
-        <input type="text" class="form-control" asp-for="MiddleName" readonly />
-        <span asp-validation-for="MiddleName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="LastName"></label>
-        <input type="text" class="form-control" asp-for="LastName" readonly />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="AddressLine"></label>
-        <input type="text" class="form-control" asp-for="AddressLine" readonly />
-        <span asp-validation-for="AddressLine" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="City"></label>
-        <input type="text" class="form-control" asp-for="City" readonly />
-        <span asp-validation-for="City" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="Province"></label>
-        <input type="text" class="form-control" asp-for="Province" readonly />
-        <span asp-validation-for="Province" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="PhoneNumber"></label>
-        <input type="text" class="form-control" asp-for="PhoneNumber" readonly />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-    <div>
-        <div class="btn-group col-lg-12">
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a asp-controller="AddressBook" asp-action="Index" class="btn btn-secondary" style="width: 150px;">Back to list</a>
+<div class="container-form">
+    <h3>@ViewData["Title"]?.ToString()</h3>
+    <hr />
+
+    <form method="post" action="Delete" class="form-control mt-3" autocomplete="off">
+        <div class="mb-3">
+            <label class="form-label" asp-for="AddressBookId"></label>
+            <input type="text" class="form-control" asp-for="AddressBookId" readonly />
         </div>
-    </div>
-</form>
+        <div class="mb-3">
+            <label class="form-label" asp-for="FirstName"></label>
+            <input type="text" class="form-control" asp-for="FirstName" readonly />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="MiddleName"></label>
+            <input type="text" class="form-control" asp-for="MiddleName" readonly />
+            <span asp-validation-for="MiddleName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="LastName"></label>
+            <input type="text" class="form-control" asp-for="LastName" readonly />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="AddressLine"></label>
+            <input type="text" class="form-control" asp-for="AddressLine" readonly />
+            <span asp-validation-for="AddressLine" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="City"></label>
+            <input type="text" class="form-control" asp-for="City" readonly />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Province"></label>
+            <input type="text" class="form-control" asp-for="Province" readonly />
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="PhoneNumber"></label>
+            <input type="text" class="form-control" asp-for="PhoneNumber" readonly />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div>
+            <div class="btn-group col-lg-12">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-controller="AddressBook" asp-action="Index" class="btn btn-dark" style="width: 150px;">Back to list</a>
+            </div>
+        </div>
+    </form>
+</div>
 
 @section Scripts
     {

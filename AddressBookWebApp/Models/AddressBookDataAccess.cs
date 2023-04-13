@@ -49,7 +49,7 @@ namespace AddressBookWebApp.Models
             return addressBookList;
         }
         
-        // Insert address book
+        // Insert person to address book
         public bool Insert(AddressBook ab)
         {
             int flag = 0;
@@ -61,10 +61,7 @@ namespace AddressBookWebApp.Models
                 command.CommandText = "[dbo].[usp_InsertPerson]";
 
                 command.Parameters.AddWithValue("@FirstName", ab.FirstName);
-                if (ab.MiddleName == null)
-                {
-                    command.Parameters.AddWithValue("@MiddleName", null);
-                } else
+                if (ab.MiddleName != null)
                 {
                     command.Parameters.AddWithValue("@MiddleName", ab.MiddleName);
                 }
@@ -86,7 +83,7 @@ namespace AddressBookWebApp.Models
             return flag > 0 ? true : false;
         }
         
-        // Get address book by id
+        // Get person data to address book by id
         public AddressBook GetPersonById(int id)
         {
             AddressBook ab = new AddressBook();
@@ -117,7 +114,7 @@ namespace AddressBookWebApp.Models
             return ab;
         }
         
-        // Update address book
+        // Update person in address book
         public bool Update(AddressBook ab)
         {
             int flag = 0;
@@ -129,10 +126,7 @@ namespace AddressBookWebApp.Models
 
                 command.Parameters.AddWithValue("@Id", ab.AddressBookId);
                 command.Parameters.AddWithValue("@FirstName", ab.FirstName);
-                if (ab.MiddleName == null)
-                {
-                    command.Parameters.AddWithValue("@MiddleName", null);
-                } else
+                if (ab.MiddleName != null)
                 {
                     command.Parameters.AddWithValue("@MiddleName", ab.MiddleName);
                 }
@@ -149,7 +143,7 @@ namespace AddressBookWebApp.Models
             return flag > 0 ? true : false;
         }
         
-        // Delete address book
+        // Delete person in address book
         public bool Delete(int id)
         {
             int flag = 0;
